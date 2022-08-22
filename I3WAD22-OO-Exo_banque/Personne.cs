@@ -45,7 +45,17 @@ namespace I3WAD22_OO_Exo_banque
         #endregion
 
         #region Méthodes et opérateurs
+        public static bool operator ==(Personne left, Personne right)
+        {
+            if (left is null && right is null) return true;
+            if (left is null || right is null) return false;
+            if (left.Nom.ToUpper() == right.Nom.ToUpper() && left.Prenom.ToLower() == right.Prenom.ToLower() && left.DateNaissance == right.DateNaissance) return true;
+            return false;
+        }
 
+        public static bool operator !=(Personne left, Personne right) {
+            return !(left == right);
+        }
         #endregion
     }
 }

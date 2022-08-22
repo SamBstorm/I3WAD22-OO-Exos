@@ -41,6 +41,32 @@ namespace I3WAD22_OO_Exo_banque
         public void Depot(double montant) {
             if (montant > 0) Solde += montant;
         }
+
+        public static double operator +(Courant left, Courant right)
+        {
+            /*
+            double left_solde = 0, right_solde = 0;
+            if (left != null && left.Solde > 0) left_solde = left.Solde;
+            if (right !=null && right.Solde > 0) right_solde = right.Solde;
+            */
+
+            double left_solde = (left != null && left.Solde > 0) ? left.Solde : 0;
+            double right_solde = (right != null && right.Solde > 0) ? right.Solde : 0;
+            return left_solde + right_solde;
+        }
+
+        public static double operator +(double left, Courant right)
+        {
+            /*
+            double left_solde = 0, right_solde = 0;
+            if (left > 0) left_solde = left;
+            if (right !=null && right.Solde > 0) right_solde = right.Solde;
+            */
+
+            double left_solde = (left > 0) ? left : 0;
+            double right_solde = (right != null && right.Solde > 0) ? right.Solde : 0;
+            return left_solde + right_solde;
+        }
         #endregion
     }
 }

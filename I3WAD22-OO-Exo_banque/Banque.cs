@@ -32,5 +32,18 @@ namespace I3WAD22_OO_Exo_banque
             if(!string.IsNullOrWhiteSpace(numero) && _comptes.ContainsKey(numero)) _comptes.Remove(numero);
         }
 
+        public double AvoirsDesComptes(Personne titulaire)
+        {
+            double somme = 0;
+            foreach (KeyValuePair<string, Courant> kvp in _comptes)
+            {
+                Courant compte = kvp.Value;
+                if(titulaire == compte.Titulaire)
+                {
+                    somme += compte;
+                }
+            }
+            return somme;
+        }
     }
 }
