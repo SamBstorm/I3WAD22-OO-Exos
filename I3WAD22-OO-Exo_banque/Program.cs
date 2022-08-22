@@ -45,6 +45,40 @@ namespace I3WAD22_OO_Exo_banque
 
             c1_bruce.LigneDeCredit = 1;
             Console.WriteLine($"Le compte bancaire de {c1_bruce.Titulaire.Nom} {c1_bruce.Titulaire.Prenom}, né le {c1_bruce.Titulaire.DateNaissance}, ayant pour numéro {c1_bruce.Numero}, a pour solde {c1_bruce.Solde}. Il peut atteindre {c1_bruce.LigneDeCredit} en dessous de 0.");
+
+            Banque abb = new Banque();
+            abb.Nom = "Aux bons bénéfices";
+            abb.Ajouter(c1_sam);
+            abb.Ajouter(c1_bruce);
+
+            Courant compte_client = abb["BE00 0000 0000 0001"];
+            if (compte_client != null)
+            {
+                compte_client.Depot(5000);
+                Console.WriteLine($"Le compte bancaire de {compte_client.Titulaire.Nom} {compte_client.Titulaire.Prenom}, né le {compte_client.Titulaire.DateNaissance}, ayant pour numéro {compte_client.Numero}, a pour solde {compte_client.Solde}. Il peut atteindre {compte_client.LigneDeCredit} en dessous de 0.");
+            }
+            Console.WriteLine($"Le compte bancaire de {c1_bruce.Titulaire.Nom} {c1_bruce.Titulaire.Prenom}, né le {c1_bruce.Titulaire.DateNaissance}, ayant pour numéro {c1_bruce.Numero}, a pour solde {c1_bruce.Solde}. Il peut atteindre {c1_bruce.LigneDeCredit} en dessous de 0.");
+
+            abb.Supprimer(c1_bruce.Numero);
+
+            compte_client = abb["BE00 0000 0000 0001"];
+            if (compte_client != null)
+            {
+                compte_client.Depot(5000);
+                Console.WriteLine($"Le compte bancaire de {compte_client.Titulaire.Nom} {compte_client.Titulaire.Prenom}, né le {compte_client.Titulaire.DateNaissance}, ayant pour numéro {compte_client.Numero}, a pour solde {compte_client.Solde}. Il peut atteindre {compte_client.LigneDeCredit} en dessous de 0.");
+            }
+
+            Console.WriteLine($"Le compte bancaire de {c1_bruce.Titulaire.Nom} {c1_bruce.Titulaire.Prenom}, né le {c1_bruce.Titulaire.DateNaissance}, ayant pour numéro {c1_bruce.Numero}, a pour solde {c1_bruce.Solde}. Il peut atteindre {c1_bruce.LigneDeCredit} en dessous de 0.");
+
+            compte_client = abb[c1_sam.Numero];
+            c1_sam = null;
+            if (compte_client != null)
+            {
+                compte_client.Depot(5000);
+                Console.WriteLine($"Le compte bancaire de {compte_client.Titulaire.Nom} {compte_client.Titulaire.Prenom}, né le {compte_client.Titulaire.DateNaissance}, ayant pour numéro {compte_client.Numero}, a pour solde {compte_client.Solde}. Il peut atteindre {compte_client.LigneDeCredit} en dessous de 0.");
+            }
+            c1_sam = compte_client;
+
         }
     }
 }
