@@ -126,6 +126,17 @@ namespace I3WAD22_OO_Exo_banque
             c4_bruce.LigneDeCredit = 0;
             c4_bruce.Depot(5);
 
+
+            Epargne e1_sam = new Epargne();
+            e1_sam.Titulaire = titulaire1;
+            e1_sam.Numero = "BE10 0000 0000 0001";
+            e1_sam.Depot(5);
+            Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
+            e1_sam.Retrait(50);
+            Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
+            e1_sam.Retrait(0.5);
+            Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
+
             Banque abb = new Banque();
             abb.Nom = "Aux bons bénéfices";
             abb.Ajouter(c1_sam);

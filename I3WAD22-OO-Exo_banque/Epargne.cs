@@ -6,54 +6,21 @@ using System.Threading.Tasks;
 
 namespace I3WAD22_OO_Exo_banque
 {
-    class Epargne
+    class Epargne : Compte
     {
         #region Variables membres - Champs
-        private string _numero;
-        private Personne _titulaire;
-        private double _solde;
         #endregion
         #region Propriétés + Indexeur
-        public string Numero { 
-            get { return _numero; }
-            set {
-                if(!string.IsNullOrWhiteSpace(value))
-                    _numero = value;
-            }
-        }
         public DateTime DateDernierRetrait { get; set; }
-        public Personne Titulaire {
-            get { return _titulaire; }
-            set {
-                if (value != null)
-                    _titulaire = value;
-            } 
-        }
-
-        public double Solde
-        {
-            get { return _solde; }
-            private set
-            {
-                if (value >= 0) _solde = value;
-            }
-        }
         #endregion
         #region Constructeur
 
         #endregion
         #region Méthodes + Opérateurs
-        public void Retrait(double montant) {
-            if (montant > 0 && Solde >= montant)
-            {
-                Solde -= montant;
-                DateDernierRetrait = DateTime.Now;
-            }
-        }
-
-        public void Depot(double montant) {
-            if(montant > 0)
-                Solde += montant;
+        public override void Retrait(double montant) {
+            double oldSolde = Solde;
+            base.Retrait(montant);
+            if(oldSolde > Solde) DateDernierRetrait = DateTime.Now;
         }
         #endregion
     }
