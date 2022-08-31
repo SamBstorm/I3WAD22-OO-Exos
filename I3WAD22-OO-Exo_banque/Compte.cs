@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace I3WAD22_OO_Exo_banque
 {
-    class Compte
+    abstract class Compte
     {
         #region Champs - Variables Membres
         private Personne _titulaire;
@@ -33,6 +33,12 @@ namespace I3WAD22_OO_Exo_banque
 
         #endregion
         #region Méthodes + Opérateurs
+        protected abstract double CalculInteret();
+        public void AppliquerInteret()
+        {
+            _solde += CalculInteret();
+        }
+
         public void Depot(double montant)
         {
             if (montant > 0)
@@ -48,6 +54,32 @@ namespace I3WAD22_OO_Exo_banque
         public virtual void Retrait(double montant)
         {
             this.Retrait(montant, 0);
+        }
+
+        public static double operator +(Compte left, Compte right)
+        {
+            /*
+            double left_solde = 0, right_solde = 0;
+            if (left != null && left.Solde > 0) left_solde = left.Solde;
+            if (right !=null && right.Solde > 0) right_solde = right.Solde;
+            */
+
+            double left_solde = (left != null && left.Solde > 0) ? left.Solde : 0;
+            double right_solde = (right != null && right.Solde > 0) ? right.Solde : 0;
+            return left_solde + right_solde;
+        }
+
+        public static double operator +(double left, Compte right)
+        {
+            /*
+            double left_solde = 0, right_solde = 0;
+            if (left > 0) left_solde = left;
+            if (right !=null && right.Solde > 0) right_solde = right.Solde;
+            */
+
+            double left_solde = (left > 0) ? left : 0;
+            double right_solde = (right != null && right.Solde > 0) ? right.Solde : 0;
+            return left_solde + right_solde;
         }
         #endregion
     }

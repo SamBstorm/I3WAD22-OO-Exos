@@ -8,14 +8,14 @@ namespace I3WAD22_OO_Exo_banque
 {
     class Banque
     {
-        private Dictionary<string, Courant> _comptes = new Dictionary<string, Courant>();
+        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
         public string Nom { get; set; }
 
-        public Courant this[string numero]
+        public Compte this[string numero]
         {
             get {
-                //Courant c = null;
-                _comptes.TryGetValue(numero, out Courant c);
+                //Compte c = null;
+                _comptes.TryGetValue(numero, out Compte c);
                 return c;
             }
             /*A éviter: moins clair et plus compliquer qu'une méthode*/
@@ -25,7 +25,7 @@ namespace I3WAD22_OO_Exo_banque
             }*/
         }
 
-        public void Ajouter(Courant compte) {
+        public void Ajouter(Compte compte) {
             if(compte != null && !_comptes.ContainsKey(compte.Numero)) _comptes.Add(compte.Numero, compte);
         }
         public void Supprimer(string numero) {
@@ -35,9 +35,9 @@ namespace I3WAD22_OO_Exo_banque
         public double AvoirsDesComptes(Personne titulaire)
         {
             double somme = 0;
-            foreach (KeyValuePair<string, Courant> kvp in _comptes)
+            foreach (KeyValuePair<string, Compte> kvp in _comptes)
             {
-                Courant compte = kvp.Value;
+                Compte compte = kvp.Value;
                 if(titulaire == compte.Titulaire)
                 {
                     somme += compte;

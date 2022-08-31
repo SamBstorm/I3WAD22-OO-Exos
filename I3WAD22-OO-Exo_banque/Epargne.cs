@@ -22,6 +22,11 @@ namespace I3WAD22_OO_Exo_banque
             base.Retrait(montant);
             if(oldSolde > Solde) DateDernierRetrait = DateTime.Now;
         }
+
+        protected override double CalculInteret()
+        {
+            return Solde * 0.045;
+        }
         #endregion
     }
 }

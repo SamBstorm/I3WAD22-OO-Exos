@@ -144,6 +144,7 @@ namespace I3WAD22_OO_Exo_banque
             abb.Ajouter(c2_bruce);
             abb.Ajouter(c3_bruce);
             abb.Ajouter(c4_bruce);
+            abb.Ajouter(e1_sam);
 
             //Console.WriteLine($"Les avoirs de {titulaire1.Nom} {titulaire1.Prenom} sont de {abb.AvoirsDesComptes(titulaire1)} Euro!");
             //Console.WriteLine($"Les avoirs de {titulaire2.Nom} {titulaire2.Prenom} sont de {abb.AvoirsDesComptes(titulaire2)} Euro!");
@@ -157,6 +158,15 @@ namespace I3WAD22_OO_Exo_banque
 
             Console.WriteLine("Veuillez indiquer la date de naissance :");
             titulaire.DateNaissance = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");
+
+            c1_sam.AppliquerInteret();
+            e1_sam.AppliquerInteret();
+            c1_bruce.AppliquerInteret();
+            c2_bruce.AppliquerInteret();
+            c3_bruce.AppliquerInteret();
+            c4_bruce.AppliquerInteret();
 
             Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");
         }
