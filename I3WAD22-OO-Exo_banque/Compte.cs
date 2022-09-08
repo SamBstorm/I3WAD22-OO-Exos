@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace I3WAD22_OO_Exo_banque
 {
-    abstract class Compte
+    abstract class Compte : IBanker, ICustomer
     {
         #region Champs - Variables Membres
         private Personne _titulaire;

@@ -169,6 +169,20 @@ namespace I3WAD22_OO_Exo_banque
             c4_bruce.AppliquerInteret();
 
             Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");
+
+            ICustomer client_sam = c1_sam;
+            Console.WriteLine($"Le client n'a accès qu'aux fonctions de Depot(), Retrait() et son Solde ({client_sam.Solde})");
+            client_sam.Depot(500);
+            Console.WriteLine($"Le client n'a accès qu'aux fonctions de Depot(), Retrait() et son Solde ({client_sam.Solde})");
+            client_sam.Retrait(500);
+            Console.WriteLine($"Le client n'a accès qu'aux fonctions de Depot(), Retrait() et son Solde ({client_sam.Solde})");
+
+            IBanker banquier_sam = e1_sam;
+            Console.WriteLine($"Le Banquier a accès aux fonctions de Depot(), Retrait() et son Solde ({banquier_sam.Solde}) comme le client...");
+            Console.WriteLine($"Mais aussi aux informations du titulaire ({banquier_sam.Titulaire.Nom}) et du Numéro de compte ({banquier_sam.Numero})");
+            banquier_sam.AppliquerInteret();
+            Console.WriteLine($"Le banquier peut aussi appliquer les intérêts (le solde a changé : {banquier_sam.Solde})");
+
         }
     }
 }
