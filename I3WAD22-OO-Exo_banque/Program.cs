@@ -56,7 +56,7 @@ namespace I3WAD22_OO_Exo_banque
                 abb.Ajouter(c1_sam);
                 abb.Ajouter(c1_bruce);
 
-                Courant compte_client = abb["BE00 0000 0000 0001"];
+                Courant compte_client = (Courant)abb["BE00 0000 0000 0001"];
                 if (compte_client != null)
                 {
                     compte_client.Depot(5000);
@@ -66,7 +66,7 @@ namespace I3WAD22_OO_Exo_banque
 
                 abb.Supprimer(c1_bruce.Numero);
 
-                compte_client = abb["BE00 0000 0000 0001"];
+                compte_client = (Courant)abb["BE00 0000 0000 0001"];
                 if (compte_client != null)
                 {
                     compte_client.Depot(5000);
@@ -75,7 +75,7 @@ namespace I3WAD22_OO_Exo_banque
 
                 Console.WriteLine($"Le compte bancaire de {c1_bruce.Titulaire.Nom} {c1_bruce.Titulaire.Prenom}, né le {c1_bruce.Titulaire.DateNaissance}, ayant pour numéro {c1_bruce.Numero}, a pour solde {c1_bruce.Solde}. Il peut atteindre {c1_bruce.LigneDeCredit} en dessous de 0.");
 
-                compte_client = abb[c1_sam.Numero];
+                compte_client = (Courant)abb[c1_sam.Numero];
                 c1_sam = null;
                 if (compte_client != null)
                 {
