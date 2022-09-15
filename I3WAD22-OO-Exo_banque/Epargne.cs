@@ -11,9 +11,16 @@ namespace I3WAD22_OO_Exo_banque
         #region Variables membres - Champs
         #endregion
         #region Propriétés + Indexeur
-        public DateTime DateDernierRetrait { get; set; }
+        public DateTime DateDernierRetrait { get; private set; }
         #endregion
         #region Constructeur
+        public Epargne(string numero, Personne titulaire) : base(numero, titulaire)
+        {
+        }
+
+        public Epargne(string numero, Personne titulaire, double solde) : base(numero, titulaire, solde)
+        {
+        }
 
         #endregion
         #region Méthodes + Opérateurs

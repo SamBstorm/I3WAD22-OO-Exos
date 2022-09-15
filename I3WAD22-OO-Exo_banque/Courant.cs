@@ -10,12 +10,26 @@ namespace I3WAD22_OO_Exo_banque
     {
         #region Variables membres - Champs
         private double _ligneDeCredit;
+
         #endregion
 
         #region Propriétés
         public double LigneDeCredit {
             get { return _ligneDeCredit; }
-            set { if(value >= 0 && value >= -Solde) _ligneDeCredit = value; }
+            private set { if(value >= 0 && value >= -Solde) _ligneDeCredit = value; }
+        }
+        #endregion
+        #region Constructeurs + Destructeur
+        public Courant(string numero, Personne titulaire) : base(numero, titulaire)
+        {
+        }
+        public Courant(string numero, Personne titulaire, double ligneDeCredit) : base(numero, titulaire)
+        {
+            this.LigneDeCredit = ligneDeCredit;
+        }
+        public Courant(string numero, Personne titulaire, double ligneDeCredit, double solde) : base(numero, titulaire, solde)
+        {
+            this.LigneDeCredit = ligneDeCredit;
         }
         #endregion
 

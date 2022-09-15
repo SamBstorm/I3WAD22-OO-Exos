@@ -12,6 +12,8 @@ namespace I3WAD22_OO_Exo_banque
         #region Champs - Variables membres
         private string _nom;
         private string _prenom;
+
+
         //private DateTime _dateNaissance;
         #endregion
 
@@ -19,7 +21,7 @@ namespace I3WAD22_OO_Exo_banque
         public string Nom
         {
             get { return _nom; }
-            set { 
+            private set { 
                 if(!string.IsNullOrWhiteSpace(value)) _nom = value.Trim();
             }
         }
@@ -27,7 +29,7 @@ namespace I3WAD22_OO_Exo_banque
         public string Prenom
         {
             get { return _prenom; }
-            set {
+            private set {
                 if (!string.IsNullOrWhiteSpace(value)) _prenom = value.Trim();
             }
         }
@@ -37,10 +39,16 @@ namespace I3WAD22_OO_Exo_banque
         //    set { _dateNaissance = value; }
         //}
 
-        public DateTime DateNaissance { get; set; }
+        public DateTime DateNaissance { get; private set; }
         #endregion
 
         #region Constructeurs & destructeur
+        public Personne(string nom, string prenom, DateTime dateNaissance)
+        {
+            Nom = nom;
+            Prenom = prenom;
+            DateNaissance = dateNaissance;
+        }
 
         #endregion
 

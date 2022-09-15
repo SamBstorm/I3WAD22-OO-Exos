@@ -86,59 +86,71 @@ namespace I3WAD22_OO_Exo_banque
                 */
             #endregion
 
-            Personne titulaire1 = new Personne();
-            titulaire1.Nom = "Legrain";
-            titulaire1.Prenom = "Samuel";
-            titulaire1.DateNaissance = new DateTime(1987, 9, 27);
+            #region Avant Constructeurs
+            //Personne titulaire1 = new Personne();
+            //titulaire1.Nom = "Legrain";
+            //titulaire1.Prenom = "Samuel";
+            //titulaire1.DateNaissance = new DateTime(1987, 9, 27);
 
-            Personne titulaire2 = new Personne();
-            titulaire2.Nom = "Willis";
-            titulaire2.Prenom = "Bruce";
-            titulaire2.DateNaissance = new DateTime(1987, 9, 27);
+            //Personne titulaire2 = new Personne();
+            //titulaire2.Nom = "Willis";
+            //titulaire2.Prenom = "Bruce";
+            //titulaire2.DateNaissance = new DateTime(1987, 9, 27);
 
-            Courant c1_sam = new Courant();
-            c1_sam.Titulaire = titulaire1;
-            c1_sam.Numero = "BE55 3820 1900 7412";
-            c1_sam.LigneDeCredit = 200;
-            c1_sam.Depot(50_000);
+            //Courant c1_sam = new Courant();
+            //c1_sam.Titulaire = titulaire1;
+            //c1_sam.Numero = "BE55 3820 1900 7412";
+            //c1_sam.LigneDeCredit = 200;
+            //c1_sam.Depot(50_000);
 
-            Courant c1_bruce = new Courant();
-            c1_bruce.Titulaire = titulaire2;
-            c1_bruce.Numero = "BE00 0000 0000 0001";
-            c1_bruce.LigneDeCredit = 500;
-            c1_bruce.Depot(50);
+            //Courant c1_bruce = new Courant();
+            //c1_bruce.Titulaire = titulaire2;
+            //c1_bruce.Numero = "BE00 0000 0000 0001";
+            //c1_bruce.LigneDeCredit = 500;
+            //c1_bruce.Depot(50);
 
-            Courant c2_bruce = new Courant();
-            c2_bruce.Titulaire = titulaire2;
-            c2_bruce.Numero = "BE00 0000 0000 0002";
-            c2_bruce.LigneDeCredit = 50;
-            c2_bruce.Retrait(50);
+            //Courant c2_bruce = new Courant();
+            //c2_bruce.Titulaire = titulaire2;
+            //c2_bruce.Numero = "BE00 0000 0000 0002";
+            //c2_bruce.LigneDeCredit = 50;
+            //c2_bruce.Retrait(50);
 
-            Courant c3_bruce = new Courant();
-            c3_bruce.Titulaire = titulaire2;
-            c3_bruce.Numero = "BE00 0000 0000 0003";
-            c3_bruce.LigneDeCredit = 5;
-            c3_bruce.Depot(500);
+            //Courant c3_bruce = new Courant();
+            //c3_bruce.Titulaire = titulaire2;
+            //c3_bruce.Numero = "BE00 0000 0000 0003";
+            //c3_bruce.LigneDeCredit = 5;
+            //c3_bruce.Depot(500);
 
-            Courant c4_bruce = new Courant();
-            c4_bruce.Titulaire = titulaire2;
-            c4_bruce.Numero = "BE00 0000 0000 0004";
-            c4_bruce.LigneDeCredit = 0;
-            c4_bruce.Depot(5);
+            //Courant c4_bruce = new Courant();
+            //c4_bruce.Titulaire = titulaire2;
+            //c4_bruce.Numero = "BE00 0000 0000 0004";
+            //c4_bruce.LigneDeCredit = 0;
+            //c4_bruce.Depot(5);
+            
+            //Epargne e1_sam = new Epargne();
+            //e1_sam.Titulaire = titulaire1;
+            //e1_sam.Numero = "BE10 0000 0000 0001";
+            //e1_sam.Depot(5);
+            #endregion
+
+            Personne titulaire1 = new Personne("Legrain", "Samuel", new DateTime(1987, 9, 27));
+            Personne titulaire2 = new Personne("Willis", "Bruce", new DateTime(1987, 9, 27));
+            Courant c1_sam = new Courant("BE55 3820 1900 7412", titulaire1, 200, 50_000);
+            Courant c1_bruce = new Courant("BE00 0000 0000 0001", titulaire2, 500, 50);
+            Courant c2_bruce = new Courant("BE00 0000 0000 0002", titulaire2, 50, -50);
+            Courant c3_bruce = new Courant("BE00 0000 0000 0003", titulaire2, 5, 500);
+            Courant c4_bruce = new Courant("BE00 0000 0000 0004", titulaire2, 0, 5);
 
 
-            Epargne e1_sam = new Epargne();
-            e1_sam.Titulaire = titulaire1;
-            e1_sam.Numero = "BE10 0000 0000 0001";
-            e1_sam.Depot(5);
+            Epargne e1_sam = new Epargne("BE10 0000 0000 0001", titulaire1,5);
+
             Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
             e1_sam.Retrait(50);
             Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
             e1_sam.Retrait(0.5);
             Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
 
-            Banque abb = new Banque();
-            abb.Nom = "Aux bons bénéfices";
+            Banque abb = new Banque("Aux bons bénéfices");
             abb.Ajouter(c1_sam);
             abb.Ajouter(c1_bruce);
             abb.Ajouter(c2_bruce);
@@ -149,15 +161,15 @@ namespace I3WAD22_OO_Exo_banque
             //Console.WriteLine($"Les avoirs de {titulaire1.Nom} {titulaire1.Prenom} sont de {abb.AvoirsDesComptes(titulaire1)} Euro!");
             //Console.WriteLine($"Les avoirs de {titulaire2.Nom} {titulaire2.Prenom} sont de {abb.AvoirsDesComptes(titulaire2)} Euro!");
 
-            Personne titulaire = new Personne();
             Console.WriteLine("Veuillez indiquer le nom :");
-            titulaire.Nom = Console.ReadLine();
+            string tit_nom = Console.ReadLine();
 
             Console.WriteLine("Veuillez indiquer le prénom :");
-            titulaire.Prenom = Console.ReadLine();
+            string tit_prenom = Console.ReadLine();
 
             Console.WriteLine("Veuillez indiquer la date de naissance :");
-            titulaire.DateNaissance = DateTime.Parse(Console.ReadLine());
+            DateTime tit_dateNaissance = DateTime.Parse(Console.ReadLine());
+            Personne titulaire = new Personne(tit_nom, tit_prenom, tit_dateNaissance);
 
             Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");
 

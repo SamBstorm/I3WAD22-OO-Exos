@@ -8,7 +8,7 @@ namespace I3WAD22_OO_Exo_banque
 {
     class Banque
     {
-        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
+        private Dictionary<string, Compte> _comptes;
         public string Nom { get; set; }
 
         public Compte this[string numero]
@@ -23,6 +23,20 @@ namespace I3WAD22_OO_Exo_banque
              * set {
                 if (value != null && !_comptes.ContainsKey(numero) && numero == value.Numero) _comptes.Add(numero, value);
             }*/
+        }
+
+        public Banque(string nom)
+        {
+            this.Nom = nom;
+            _comptes = new Dictionary<string, Compte>();
+        }
+
+        public Banque(string nom, Compte[] comptes) : this(nom)
+        {
+            foreach (Compte c in comptes)
+            {
+                this.Ajouter(c);
+            }
         }
 
         public void Ajouter(Compte compte) {

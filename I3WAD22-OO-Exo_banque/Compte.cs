@@ -17,12 +17,12 @@ namespace I3WAD22_OO_Exo_banque
         public string Numero
         {
             get { return _numero; }
-            set { if (!string.IsNullOrWhiteSpace(value)) _numero = value; }
+            private set { if (!string.IsNullOrWhiteSpace(value)) _numero = value; }
         }
         public Personne Titulaire
         {
             get { return _titulaire; }
-            set { if (value != null) _titulaire = value; }
+            private set { if (value != null) _titulaire = value; }
         }
         public double Solde
         {
@@ -30,7 +30,16 @@ namespace I3WAD22_OO_Exo_banque
         }
         #endregion
         #region Constructeur
+        public Compte(string numero, Personne titulaire)
+        {
+            this.Numero = numero;
+            this.Titulaire = titulaire;
+        }
 
+        public Compte(string numero, Personne titulaire, double solde) :this (numero, titulaire)
+        {
+            _solde = solde;
+        }
         #endregion
         #region Méthodes + Opérateurs
         protected abstract double CalculInteret();
