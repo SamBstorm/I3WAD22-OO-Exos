@@ -17,12 +17,17 @@ namespace I3WAD22_OO_Exo_banque
         public string Numero
         {
             get { return _numero; }
-            private set { if (!string.IsNullOrWhiteSpace(value)) _numero = value; }
+            private set {
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException($"Le numéro ne peut contenir : {value}");
+                _numero = value; 
+            }
         }
         public Personne Titulaire
         {
             get { return _titulaire; }
-            private set { if (value != null) _titulaire = value; }
+            private set {
+                if (value is null) throw new ArgumentNullException("Le titulaire ne peut être 'null'");
+                _titulaire = value; }
         }
         public double Solde
         {
@@ -50,14 +55,16 @@ namespace I3WAD22_OO_Exo_banque
 
         public void Depot(double montant)
         {
-            if (montant > 0)
-                _solde += montant;
+            if (montant < 0) throw new ArgumentOutOfRangeException();
+            _solde += montant;
         }
 
         protected void Retrait(double montant, double limite)
         {
-            if (montant > 0 && Solde + limite >= montant)
-                _solde -= montant;
+            if (montant < 0) throw new ArgumentOutOfRangeException();
+            if (Solde + limite < montant) throw new SoldeInsuffisantException();
+            //if (Solde + limite < montant) throw new SoldeInsuffisantException(montant,Solde,limite);
+            _solde -= montant;
         }
 
         public virtual void Retrait(double montant)

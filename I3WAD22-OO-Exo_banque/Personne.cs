@@ -21,8 +21,9 @@ namespace I3WAD22_OO_Exo_banque
         public string Nom
         {
             get { return _nom; }
-            private set { 
-                if(!string.IsNullOrWhiteSpace(value)) _nom = value.Trim();
+            private set {
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException($"Le nom d'une personne ne peut être : '{value}'");
+                _nom = value.Trim();
             }
         }
 
@@ -30,7 +31,8 @@ namespace I3WAD22_OO_Exo_banque
         {
             get { return _prenom; }
             private set {
-                if (!string.IsNullOrWhiteSpace(value)) _prenom = value.Trim();
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException($"Le prénom d'une personne ne peut être : '{value}'");
+                _prenom = value.Trim();
             }
         }
 

@@ -144,8 +144,8 @@ namespace I3WAD22_OO_Exo_banque
 
             Epargne e1_sam = new Epargne("BE10 0000 0000 0001", titulaire1,5);
 
-            Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
-            e1_sam.Retrait(50);
+            //Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
+            //e1_sam.Retrait(50);
             Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
             e1_sam.Retrait(0.5);
             Console.WriteLine($"Le compte épargne {e1_sam.Numero}, a pour solde : {e1_sam.Solde}, avec pour dernier retrait {e1_sam.DateDernierRetrait}");
@@ -161,7 +161,7 @@ namespace I3WAD22_OO_Exo_banque
             //Console.WriteLine($"Les avoirs de {titulaire1.Nom} {titulaire1.Prenom} sont de {abb.AvoirsDesComptes(titulaire1)} Euro!");
             //Console.WriteLine($"Les avoirs de {titulaire2.Nom} {titulaire2.Prenom} sont de {abb.AvoirsDesComptes(titulaire2)} Euro!");
 
-            Console.WriteLine("Veuillez indiquer le nom :");
+            /*Console.WriteLine("Veuillez indiquer le nom :");
             string tit_nom = Console.ReadLine();
 
             Console.WriteLine("Veuillez indiquer le prénom :");
@@ -180,7 +180,7 @@ namespace I3WAD22_OO_Exo_banque
             c3_bruce.AppliquerInteret();
             c4_bruce.AppliquerInteret();
 
-            Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");
+            Console.WriteLine($"Les avoirs de {titulaire.Nom} {titulaire.Prenom} sont de {abb.AvoirsDesComptes(titulaire)} Euro!");*/
 
             ICustomer client_sam = c1_sam;
             Console.WriteLine($"Le client n'a accès qu'aux fonctions de Depot(), Retrait() et son Solde ({client_sam.Solde})");
@@ -194,6 +194,33 @@ namespace I3WAD22_OO_Exo_banque
             Console.WriteLine($"Mais aussi aux informations du titulaire ({banquier_sam.Titulaire.Nom}) et du Numéro de compte ({banquier_sam.Numero})");
             banquier_sam.AppliquerInteret();
             Console.WriteLine($"Le banquier peut aussi appliquer les intérêts (le solde a changé : {banquier_sam.Solde})");
+
+            try
+            {
+                Courant c_test = new Courant("Test", titulaire1, 50, 500);
+                c_test.Depot(-551);
+                Console.WriteLine($"Le compte '{c_test.Numero}' a comme Solde : {c_test.Solde} €.");
+            }
+            catch (ArgumentOutOfRangeException aoore)
+            {
+                Console.WriteLine(aoore.GetType());
+                Console.WriteLine(aoore.Message);
+            }
+            catch (InvalidOperationException ioe)
+            {
+                Console.WriteLine(ioe.GetType());
+                Console.WriteLine(ioe.Message);
+            }
+            catch(SoldeInsuffisantException sie)
+            {
+                Console.WriteLine(sie.GetType());
+                Console.WriteLine(sie.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.GetType());
+                Console.WriteLine(e.Message);
+            }
 
         }
     }

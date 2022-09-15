@@ -16,7 +16,10 @@ namespace I3WAD22_OO_Exo_banque
         #region Propriétés
         public double LigneDeCredit {
             get { return _ligneDeCredit; }
-            private set { if(value >= 0 && value >= -Solde) _ligneDeCredit = value; }
+            private set {
+                if (value < 0 || value < -Solde) throw new InvalidOperationException();
+                _ligneDeCredit = value; 
+            }
         }
         #endregion
         #region Constructeurs + Destructeur
