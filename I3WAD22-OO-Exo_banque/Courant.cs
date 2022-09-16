@@ -38,7 +38,9 @@ namespace I3WAD22_OO_Exo_banque
 
         #region Méthodes + opérateurs
         public override void Retrait(double montant) {
+            double ancienSolde = this.Solde;
             base.Retrait(montant, LigneDeCredit);
+            if (ancienSolde >= 0 && this.Solde < 0) ActivatePassageEnNegatif(this);
         }
 
         protected override double CalculInteret()

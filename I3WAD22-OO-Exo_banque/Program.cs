@@ -221,6 +221,9 @@ namespace I3WAD22_OO_Exo_banque
                 Console.WriteLine(e.GetType());
                 Console.WriteLine(e.Message);
             }
+            abb.Supprimer(c1_sam.Numero);
+
+            c1_sam.Retrait(c1_sam.Solde + 1);
 
         }
     }

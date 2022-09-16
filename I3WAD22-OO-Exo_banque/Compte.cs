@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace I3WAD22_OO_Exo_banque
 {
+    delegate void PassageEnNegatifDelegate(Compte c);
     abstract class Compte : IBanker, ICustomer
     {
         #region Champs - Variables Membres
         private Personne _titulaire;
         private string _numero;
         private double _solde;
+
+        public event PassageEnNegatifDelegate PassageEnNegatifEvent;
         #endregion
         #region Propriétés + Indexeurs
         public string Numero
@@ -70,6 +73,11 @@ namespace I3WAD22_OO_Exo_banque
         public virtual void Retrait(double montant)
         {
             this.Retrait(montant, 0);
+        }
+
+        protected void ActivatePassageEnNegatif(Compte c)
+        {
+            PassageEnNegatifEvent?.Invoke(c);
         }
 
         public static double operator +(Compte left, Compte right)

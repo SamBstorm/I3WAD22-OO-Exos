@@ -40,10 +40,18 @@ namespace I3WAD22_OO_Exo_banque
         }
 
         public void Ajouter(Compte compte) {
-            if(compte != null && !_comptes.ContainsKey(compte.Numero)) _comptes.Add(compte.Numero, compte);
+            if (compte != null && !_comptes.ContainsKey(compte.Numero))
+            {
+                _comptes.Add(compte.Numero, compte);
+                compte.PassageEnNegatifEvent += PassageEnNegatifAction;
+            }
         }
         public void Supprimer(string numero) {
-            if(!string.IsNullOrWhiteSpace(numero) && _comptes.ContainsKey(numero)) _comptes.Remove(numero);
+            if (!string.IsNullOrWhiteSpace(numero) && _comptes.ContainsKey(numero))
+            {
+                _comptes[numero].PassageEnNegatifEvent -= PassageEnNegatifAction;
+                _comptes.Remove(numero);
+            }
         }
 
         public double AvoirsDesComptes(Personne titulaire)
@@ -58,6 +66,11 @@ namespace I3WAD22_OO_Exo_banque
                 }
             }
             return somme;
+        }
+
+        public void PassageEnNegatifAction(Compte c)
+        {
+            Console.WriteLine($"Le compte {c.Numero} est passé en négatif!");
         }
     }
 }
